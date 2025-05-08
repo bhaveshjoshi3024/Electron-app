@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head><title>View Data</title></head>
+<body>
+  <h1>View Records</h1>
+<input type="text" id="searchCity" placeholder="Enter city">
+<input type="date" id="searchDate">
+<button id="searchBtn" onclick="fetchData()">Search</button>
+
+<div id="result"></div>
+
+  <button onclick="window.location.href='index.html'">Back</button>
+  <script>
+    async function fetchData() {
+      const date = document.getElementById('searchDate').value;
+      const city = document.getElementById('searchCity').value;
+      const res = await fetch(`http://localhost:5000/api/users/search?date=${date}&city=${city}`);
+      const data = await res.json();
+
+      const result = document.getElementById('result');
+      result.innerHTML = '';
+      data.forEach(user => {
+        const div = document.createElement('div');
+        div.innerHTML = `
+          <h3>${user.name}</h3>
+          <p>${user.age} years, ${user.city}, ${user.date} ${user.time}</p>
+          <p>${user.address}</p>
+          ${user.images.map(img => `<img src="http://localhost:5000${img}" width="100">`).join('')}
+          <video controls width="200" src="http://localhost:5000${user.video}"></video>
+        `;
+        result.appendChild(div);
+      });
+    }
+  </script>
+</body>
+</html>

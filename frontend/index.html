@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head><title>Form</title></head>
+<body>
+  <h1>Enter Details</h1>
+  <form id="userForm" enctype="multipart/form-data">
+    <input name="name" placeholder="Name" required><br>
+    <input name="age" type="number" placeholder="Age" required><br>
+    <input name="date" type="date" required><br>
+    <input name="time" type="time" required><br>
+    <input name="city" placeholder="City" required><br>
+    <textarea name="address" placeholder="Address" required></textarea><br>
+    <label>Images:</label><input type="file" name="images" multiple accept="image/*"><br>
+    <label>Video:</label><input type="file" name="video" accept="video/*"><br>
+    <button type="submit">Submit</button>
+  </form>
+  <button onclick="window.location.href='view.html'">View Data</button>
+  <script src="renderer.js"></script>
+</body>
+</html>
